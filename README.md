@@ -1,2 +1,4 @@
-# viral-aedes-aegypti
-Animação Viral para combate ao mosquito Aedes Aegypti -  Mosquitos da dengue voando em seu blog ou site.
+# Animação Web Viral para promoção do Combate aos mosquitos Aedes Aegypti
+
+O usuário ao clicar em um dos mosquistos será redirecionado ao site http://combateaedes.saude.gov.br  cujo contém informações e orientações para o combate aos mosquitos.
+
