@@ -4,3 +4,11 @@ O usuário ao clicar em um dos mosquistos será redirecionado ao site http://com
 
 Demostração no link: http://valessiobrito.github.io/viral-aedes-aegypti/
 
+## Agredecimento e Créditos
+
+* Aurélio A. Heckert @aurium - Programmer at Colivre.coop.br
+* Valessio S. Brito @valessiobrito - Assessor MJ
+* Keffin Gracher - PR
+* Carlos Eduardo Araujo Vieira @caduvieira - MPOG
+* Tod@s que estão colaborando com a iniciativa.
+
