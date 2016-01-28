@@ -1,126 +1,36 @@
 <html><head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-  <script type="text/javascript" src="jquery.min.js"></script>
+  <script type="text/javascript" src="lib/jquery.min.js"></script>
 
-  <style type="text/css">
-
-	body {
-	  background: #DDD;
-	  margin: 2em 10%; 
-	}
-	
-	div#zona-voo {
-	  position: absolute;
-	  top: 0px;
-	  left: 0px;
-	  height:500px;
-	  width:500px;
-	}
-	
-	.aegypti {
-	  display: block;
-	  position:fixed;
-	  width: 50px;
-	  height: 50px;
-	  margin: 2% auto;
-	  background: url('aedes.png') left center;
-	  animation: play .2s steps(6) infinite;
-	  z-index: 10;
-	}
-	
-	@keyframes play {
-	    100% { background-position: -300px; }
-	}
-
-  </style>
+  <script type="text/javascript" src="aedes.js"></script>
 
   <title>Viral - Combate Aedes Aegypti</title>
 
-<script type="text/javascript">
-
-$(window).ready(function() {
-
-	$(document).ready(function() {
-	    $('.aegypti').each(function(num,el){
-	        $el = $(el);
-	        $parent = $el.parent();
-	        // Randomize start point:
-	        $(el).css({ top: $parent.height() * Math.random() + 'px' });
-  	      animateAedes($(el));
-	    });
-	});
-
-	function makeNewPosition($container) {
-	    var h = $container.height() - 50;
-	    var w = $container.width() - 50;
-	
-	    var nh = Math.floor(Math.random() * h);
-	    var nw = Math.floor(Math.random() * w);
-	
-	    return {left:nw, top:nh};
-	}
-
-	function animateAedes($target) {
-	    var newq = makeNewPosition($target.parent());
-	    var oldq = $target.offset();
-	    var origAngle = $target[0].angle || 0;
-	    var angle = ((Math.atan2(newq.top-oldq.top, newq.left-oldq.left)/Math.PI) * 180 ) - 90;
-	    $target[0].angle = angle;
-
-      // jQuery::animate wont work for transform, so we do it by computing frames:
-      for ( var step=0; step<=1; step+=.1 ) {
-          (function (stepAngle) {
-              setTimeout(function(){
-                  $target.css({transform: 'rotate('+(origAngle+stepAngle)+'deg)'})
-              }, 600*step);
-          })((angle-origAngle)*step);
-      }
-
-	    var speed = calcSpeed(oldq, newq);
-	
-	    $target.animate({
-	        left: newq.left,
-	        top: newq.top
-	    }, speed, function() {
-	        setTimeout(function(){ animateAedes($target) }, 500);
-	    });
-	}
-
-	function calcSpeed(prev, next) {
-	    var x = Math.abs(prev.left - next.left);
-	    var y = Math.abs(prev.top - next.top);
-	    var dist = Math.sqrt(x*x + y*y);
-	    //var speedModifier = 0.1;
-	    //var speed = Math.ceil(dist / speedModifier);
-	    //return speed;
-	    return Math.log(dist/10 + 1) * 1000;
-	}
-
-});
-
-</script>
+  <style type="text/css">
+  
+    body {
+      background: #DDD;
+      margin: 2em 10%; 
+    }
+  
+  </style>
 
 </head>
 
 <body>
 
-<h1>Página de Exemplo</h1>
+<h1>Viral para Combate aos Mosquitos Aedes Aegypti</h1>
 
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vitae augue vulputate, mollis augue ut, interdum tortor. Nulla nec ipsum ullamcorper, dictum ligula nec, tempus diam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam et velit finibus massa rutrum dictum id eu quam. Sed eu nunc lacus. Ut vehicula massa vel tincidunt blandit. Praesent justo leo, eleifend ut malesuada vel, commodo non velit. Praesent condimentum auctor turpis, eget pellentesque ex. Morbi sagittis ac nibh ut cursus. Mauris nec faucibus quam. Ut vel tortor ac elit facilisis porta in at dui. Duis rutrum congue felis, eu blandit sapien posuere eget. Donec eget semper neque.
-</p><p>
- Nunc luctus pellentesque tristique. Vestibulum accumsan felis eget magna dapibus, sit amet interdum enim sollicitudin. Aenean eu justo id felis tempor aliquam at molestie nisi. Curabitur sit amet dui id lectus pulvinar cursus et eget lacus. Donec auctor, purus a ultrices posuere, turpis velit tincidunt dui, vel feugiat felis magna nec sem. Nam eu euismod libero. Etiam facilisis bibendum ipsum, a interdum sem porttitor nec. Nam eget dui massa. Aenean eu purus vel tellus facilisis elementum. Phasellus ultricies congue odio.
-</p><p>
-Pellentesque luctus, mi in pretium rutrum, ex risus fringilla dui, eget pulvinar enim enim eget tellus. Nulla facilisi. Aliquam auctor augue in justo accumsan auctor. Donec in dictum dui, sit amet malesuada libero. Vivamus nec maximus magna, nec vulputate arcu. Maecenas lacus mi, pellentesque suscipit est hendrerit, vehicula rhoncus purus. Nullam ligula eros, congue in erat ac, fermentum facilisis eros. Mauris vel lectus nisl. Phasellus eu aliquet purus. Donec et ultricies orci. Duis sagittis mi at feugiat elementum. Vivamus porta accumsan mi, quis tempor enim eleifend sed. Curabitur ante neque, dignissim nec dui eu, tincidunt viverra augue. In velit neque, mattis in magna ut, feugiat blandit mi. Nullam sit amet mauris massa. Praesent et dolor cursus, consequat lectus ut, auctor est.
-</p>
+<p>Este projeto contém o script para prover uma animação do mosquito aedes aegypti flutuante no site.<p>
 
-<!-- Colocar no fim do <body> permite que os mosquitos usem toda a página como área de voo. -->
-<div id="zona-voo">
-<a href="http://combateaedes.saude.gov.br/" class="aegypti mosq1"></a>
-<a href="http://combateaedes.saude.gov.br/" class="aegypti mosq2"></a>
-<a href="http://combateaedes.saude.gov.br/" class="aegypti mosq3"></a>
-</div>
+A proposta é que blogs, sites e outros serviços online, adotem o script abaixo como forma de viralizar o link para o site com orientações de como combater o mosquito aedes aegypti.<br />
+<b> Para colocar em seu site, basta copiar e colar o código abaixo como conteúdo HTML</b><br />
+<textarea rows="3" cols="83" wrap="off" name="txt">
+&lt;script type='text/javascript' 
+src='http://valessiobrito.github.io/viral-aedes-aegypti/aedes.js'&gt;
+&lt;/script&gt;
+</textarea><br />
 
 </body>
 </html>
