@@ -2,7 +2,6 @@ $(window).ready(function() {
 
 	$('head').append('<style type="text/css">' +
 	'.flipAE { transform: scaleX(-1); }' +
-	'div#zona-voo { position: absolute; z-index:9999; top: -300px; left: 0px; height:300px; width:70%; }' +
 	'.aegypti { display: block; z-index:9999; position:fixed; width: 60px; height: 50px; margin: 2% auto; background: url("http://valessiobrito.github.io/viral-aedes-aegypti/aedes.png")' +
 	'left center; }' +
 	'.flyAE { animation: play .2s steps(6) infinite; }' +
