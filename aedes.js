@@ -2,20 +2,20 @@ $(window).ready(function() {
 
 	$('head').append('<style type="text/css">' +
 	'.flipAE { transform: scaleX(-1); }' +
-	'.aegypti { display: block; z-index:9999; position:fixed; width: 60px; height: 50px; margin: 2% auto; background: url("http://valessiobrito.github.io/viral-aedes-aegypti/aedes.png")' +
+	'.aegypti { display: block; z-index:9999; position:absolute; width: 60px; height: 50px; margin: 2% auto; background: url("http://valessiobrito.github.io/viral-aedes-aegypti/aedes.png")' +
 	'left center; }' +
 	'.flyAE { animation: play .2s steps(6) infinite; }' +
 	'@keyframes play { 100% { background-position: -360px; } }' +
-	'.rotateAE { background-position: 180px}' +
+	'.rotateAE { background-position: 180px }' +
 	'</style>');
 
-  minY = 50;
-  maxY = 300;
+  minY = 20;
+  maxY = 200;
   minX = 50
 	maxX = $(document.body).width() - 100;
 
 	$(document).ready(function() {
-	    for (var i=0; i<4; i++) {
+	    for (var i=0; i<3; i++) {
 	        setTimeout(function(){
 	            var mosquito = $('<a href="http://combateaedes.saude.gov.br/"' +
 	                             ' target="_blank" class="aegypti flyAE"' +
