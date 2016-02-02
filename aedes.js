@@ -1,57 +1,71 @@
 $(window).ready(function() {
 
-	$('head').append('<style type="text/css">.flipAE { transform: scaleX(-1); } div#zona-voo { position: absolute; z-index:9999; top: -300px; left: 0px; height:300px; width:70%; } .aegypti { display: block; position:fixed; width: 60px; height: 50px; margin: 2% auto; background: url("http://valessiobrito.github.io/viral-aedes-aegypti/aedes.png") left center; animation: play .2s steps(6) infinite; z-index: 10; } @keyframes play { 100% { background-position: -360px; } } .rotateAE { animation: playRotate .3s steps(4) infinite; } @keyframes playRotate { 100% { background-position: 240px; } }</style>');
+	$('head').append('<style type="text/css">' +
+	'.flipAE { transform: scaleX(-1); }' +
+	'.aegypti { display: block; z-index:9999; position:absolute; width: 60px; height: 50px; margin: 2% auto; background: url("http://valessiobrito.github.io/viral-aedes-aegypti/aedes.png")' +
+	'left center; }' +
+	'.flyAE { animation: play .2s steps(6) infinite; }' +
+	'@keyframes play { 100% { background-position: -360px; } }' +
+	'.rotateAE { background-position: 180px }' +
+	'</style>');
+
+  minY = 20;
+  maxY = 200;
+  minX = 50
+	maxX = $(document.body).width() - 100;
 
 	$(document).ready(function() {
-		$(document.body).append('<div id="zona-voo"><a href="http://combateaedes.saude.gov.br/" target="_blank" class="aegypti"></a><a href="http://combateaedes.saude.gov.br/" target="_blank" class="aegypti"></a><a href="http://combateaedes.saude.gov.br/" target="_blank" class="aegypti"></a></div>');
-});
-
-	$(document).ready(function() {
-	    $('.aegypti').each(function(num,el){
-	        $el = $(el);
-	        $parent = $el.parent();
-	        // Randomize start point:
-	        $(el).css({ top: $parent.height() * Math.random() + 'px' });
-  	      animateAedes($(el));
-	    });
+	    for (var i=0; i<3; i++) {
+	        setTimeout(function(){
+	            var mosquito = $('<a href="http://combateaedes.saude.gov.br/"' +
+	                             ' target="_blank" class="aegypti flyAE"' +
+	                             ' id="aegypti'+i+'" style="top:-90px"></a>')
+	                             .appendTo(document.body);
+	            mosquito.css({ left: makeNewPosition().left + 'px' });
+	            mosquito.click(function(){
+	                mosquito.remove();  // Mata o mosquito, remove da página.
+	                mosquito[0] = null; // facilita o fim da animação.
+	            });
+      	      animateAedes(mosquito);
+  	      }, Math.pow(i*2,2)*1000);
+	    }
 	});
 
-	function makeNewPosition($container) {
-	    var h = $container.height() - 50;
-	    var w = $container.width() - 50;
-	
-	    var nh = Math.floor(Math.random() * h);
-	    var nw = Math.floor(Math.random() * w);
-	
-	    return {left:nw, top:nh};
+	function makeNewPosition() {
+	    var newX = Math.floor((maxX-minX) * Math.random()) + minX;
+	    var newY = Math.floor((maxY-minY) * Math.random()) + minY;
+	    return {left:newX, top:newY};
 	}
 
-	function animateAedes($target) {
-	    var newq = makeNewPosition($target.parent());
-	    var oldq = $target.offset();
-	    var origAngle = $target[0].angle || 0;
+  function precisaGirar(newq, oldq, mosquito) {
+      return (
+          ( newq.left > oldq.left && !mosquito.hasClass('flipAE') ) ||
+          ( newq.left < oldq.left && mosquito.hasClass('flipAE') )
+      )
+  }
+
+	function animateAedes(mosquito) {
+	    if (!mosquito[0]) return console.log('Morreu.');
+	    var newq = makeNewPosition();
+	    var oldq = mosquito.offset();
+	    var origAngle = mosquito[0].angle || 0;
 	    var angle = ((Math.atan2(newq.top-oldq.top, newq.left-oldq.left)/Math.PI) * 180 ) - 90;
 
-      // .flipAE é a animação no sentido contrario, usar somente .aegypti é animação sentido normal
-      // .rotateAE são 4 frames para rotação, deve reproduzir somente no limite/retorno 
-      for ( var step=0; step<=1; step+=.1 ) {
-	setTimeout(function(){
-		$target.removeClass('aegypti flipAE').addClass('aegypti')
-	}, 50*step);
-        (function (stepAngle) {
-              setTimeout(function(){
-		   $target.removeClass('aegypti rotateAE').addClass('aegypti flipAE')
-              }, 50*step);
-        })($target.removeClass('aegypti flipAE').addClass('aegypti rotateAE'), 300*step);
-      }
+      if ( precisaGirar(newq, oldq, mosquito) )
+        mosquito.removeClass('flyAE').addClass('rotateAE');
+      setTimeout(function(){
+        if ( newq.left > oldq.left ) mosquito.addClass('flipAE');
+        else mosquito.removeClass('flipAE');
+        mosquito.removeClass('rotateAE').addClass('flyAE');
+      }, 60);
 
 	    var speed = calcSpeed(oldq, newq);
 	
-	    $target.animate({
+	    mosquito.animate({
 	        left: newq.left,
 	        top: newq.top
 	    }, speed, function() {
-	        setTimeout(function(){ animateAedes($target) }, 500);
+	        setTimeout(function(){ animateAedes(mosquito) }, 100);
 	    });
 	}
 
@@ -59,9 +73,6 @@ $(window).ready(function() {
 	    var x = Math.abs(prev.left - next.left);
 	    var y = Math.abs(prev.top - next.top);
 	    var dist = Math.sqrt(x*x + y*y);
-	    //var speedModifier = 0.1;
-	    //var speed = Math.ceil(dist / speedModifier);
-	    //return speed;
 	    return Math.log(dist/10 + 1) * 900;
 	}
 
