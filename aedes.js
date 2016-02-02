@@ -8,6 +8,11 @@ $(window).ready(function() {
 	'.aegypti { cursor: url(raquete.png) 30 35, pointer; }' +
 	'@keyframes play { 100% { background-position: -360px; } }' +
 	'.rotateAE { background-position: 180px; }' +
+	'@media (min-width: 940px) { body #aegypti-intervencao #aegypti-close { width: 42px; height: 42px; margin-left: 348px; top: 42px; left: 50%; } }' +
+	'#aegypti-intervencao { width: 100%; margin-top: -140px; position: fixed; top: 50%; text-align: center; }' +
+	'#aegypti-intervencao #aegypti-banner:focus { outline: none !important; }' +
+	'#aegypti-intervencao #aegypti-close { width: 4.4%; height: 12%; display: block; position: absolute; top: 12.4%; left: 87.2%; overflow: hidden; text-indent: -999999px; }' +
+	'#aegypti-intervencao img { width: 100%; max-width: 939px;' +
 	'</style>');
 
   minY = 20;
@@ -24,8 +29,27 @@ $(window).ready(function() {
 	                             .appendTo(document.body);
 	            mosquito.css({ left: makeNewPosition().left + 'px' });
 	            mosquito.click(function(){
+
+                // Caso a estrutura não tenha sido criada
+                if (!$('#aegypti-intervencao').length) {
+                    $(document.body).append('<div id="aegypti-intervencao"><a href="http://combateaedes.saude.gov.br/" id="aegypti-banner" target="_blank" title="Faça sua parte"><img src="aviso.png" alt="Não adianta apenas matar o mosquito. Não podemos deixar ele nascer. E isso depende de todos nós." /></a><a href="#" id="aegypti-close" title="Fechar">Fechar</a></div>');
+
+                    $('#aegypti-intervencao #aegypti-banner').focus();
+                    $('#aegypti-intervencao a').on("click", function() {
+                        $(this).parent().fadeOut();
+                    });
+                }
+                // Senão, apenas exibe
+                else {
+                    $('#aegypti-intervencao').fadeIn();
+                    $('#aegypti-intervencao #aegypti-banner').focus();
+                }
+
 	                mosquito.remove();  // Mata o mosquito, remove da página.
 	                mosquito[0] = null; // facilita o fim da animação.
+
+                return false;
+
 	            });
               mosquito.mouseover(function() {
                 mosquito.stop();
@@ -36,6 +60,7 @@ $(window).ready(function() {
       	      animateAedes(mosquito);
   	      }, Math.pow(i*2,2)*1000);
 	    }
+
 	});
 
 	function makeNewPosition() {
