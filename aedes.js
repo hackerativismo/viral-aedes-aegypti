@@ -2,11 +2,12 @@ $(window).ready(function() {
 
 	$('head').append('<style type="text/css">' +
 	'.flipAE { transform: scaleX(-1); }' +
-	'.aegypti { display: block; z-index:9999; position:absolute; width: 60px; height: 50px; margin: 2% auto; background: url("http://valessiobrito.github.io/viral-aedes-aegypti/aedes.png")' +
+	'.aegypti { display: block; z-index:9999; position:absolute; width: 60px; height: 50px; margin: 2% auto; background: url("aedes.png")' +
 	'left center; }' +
 	'.flyAE { animation: play .2s steps(6) infinite; }' +
+	'.aegypti { cursor: url(raquete.png) 30 35, pointer; }' +
 	'@keyframes play { 100% { background-position: -360px; } }' +
-	'.rotateAE { background-position: 180px }' +
+	'.rotateAE { background-position: 180px; }' +
 	'</style>');
 
   minY = 20;
