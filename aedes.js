@@ -27,6 +27,12 @@ $(window).ready(function() {
 	                mosquito.remove();  // Mata o mosquito, remove da página.
 	                mosquito[0] = null; // facilita o fim da animação.
 	            });
+              mosquito.mouseover(function() {
+                mosquito.stop();
+              });
+              mosquito.mouseout(function() {
+      	        animateAedes(mosquito);
+              });
       	      animateAedes(mosquito);
   	      }, Math.pow(i*2,2)*1000);
 	    }
