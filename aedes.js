@@ -2,10 +2,10 @@ $(window).ready(function() {
 
 	$('head').append('<style type="text/css">' +
 	'.flipAE { transform: scaleX(-1); }' +
-	'.aegypti { display: block; z-index:9999; position:absolute; width: 60px; height: 50px; margin: 2% auto; background: url("aedes.png")' +
+	'.aegypti { display: block; z-index:9999; position:absolute; width: 60px; height: 50px; margin: 2% auto; background: url("http://hackerativismo.github.io/viral-aedes-aegypti/aedes.png")' +
 	'left center; }' +
 	'.flyAE { animation: play .2s steps(6) infinite; }' +
-	'.aegypti { cursor: url(raquete.png) 30 35, pointer; }' +
+	'.aegypti { cursor: url("http://hackerativismo.github.io/viral-aedes-aegypti/raquete.png") 30 35, pointer; }' +
 	'@keyframes play { 100% { background-position: -360px; } }' +
 	'.rotateAE { background-position: 180px; }' +
 	'@media (min-width: 940px) { body #aegypti-intervencao #aegypti-close { width: 42px; height: 42px; margin-left: 348px; top: 42px; left: 50%; } }' +
@@ -32,7 +32,7 @@ $(window).ready(function() {
 
                 // Caso a estrutura não tenha sido criada
                 if (!$('#aegypti-intervencao').length) {
-                    $(document.body).append('<div id="aegypti-intervencao"><a href="http://combateaedes.saude.gov.br/" id="aegypti-banner" target="_blank" title="Faça sua parte"><img src="aviso.png" alt="Não adianta apenas matar o mosquito. Não podemos deixar ele nascer. E isso depende de todos nós." /></a><a href="#" id="aegypti-close" title="Fechar">Fechar</a></div>');
+                    $(document.body).append('<div id="aegypti-intervencao"><a href="http://combateaedes.saude.gov.br/" id="aegypti-banner" target="_blank" title="Faça sua parte"><img src="http://hackerativismo.github.io/viral-aedes-aegypti/aviso.png" alt="Não adianta apenas matar o mosquito. Não podemos deixar ele nascer. E isso depende de todos nós." /></a><a href="#" id="aegypti-close" title="Fechar">Fechar</a></div>');
 
                     $('#aegypti-intervencao #aegypti-banner').focus();
                     $('#aegypti-intervencao a').on("click", function() {
