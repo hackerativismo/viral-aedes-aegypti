@@ -9,7 +9,7 @@ $(window).ready(function() {
 	'@keyframes play { 100% { background-position: -360px; } }' +
 	'.rotateAE { background-position: 180px; }' +
 	'@media (min-width: 940px) { body #aegypti-intervencao #aegypti-close { width: 42px; height: 42px; margin-left: 348px; top: 42px; left: 50%; } }' +
-	'#aegypti-intervencao { width: 100%; margin-top: -140px; position: fixed; top: 50%; text-align: center; }' +
+	'#aegypti-intervencao { width: 100%; margin-top: -140px; z-index:9998; position: fixed; top: 50%; text-align: center; }' +
 	'#aegypti-intervencao #aegypti-banner:focus { outline: none !important; }' +
 	'#aegypti-intervencao #aegypti-close { width: 4.4%; height: 12%; display: block; position: absolute; top: 12.4%; left: 87.2%; overflow: hidden; text-indent: -999999px; }' +
 	'#aegypti-intervencao img { width: 100%; max-width: 939px;' +
