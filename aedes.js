@@ -1,4 +1,4 @@
-$(window).ready(function() {
+jQuery(document).ready(function($) {
 
 	$('head').append('<style type="text/css">' +
 	'.flipAE { transform: scaleX(-1); }' +
