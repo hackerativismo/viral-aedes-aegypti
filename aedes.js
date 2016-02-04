@@ -37,6 +37,7 @@ $(window).ready(function() {
                     $('#aegypti-intervencao #aegypti-banner').focus();
                     $('#aegypti-intervencao a').on("click", function() {
                         $(this).parent().fadeOut();
+			$('.aegypti').css("display","none");
                     });
                 }
                 // Senão, apenas exibe
