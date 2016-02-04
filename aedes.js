@@ -5,7 +5,7 @@ $(window).ready(function() {
 	'.aegypti { display: block; z-index:9999; position:absolute; width: 60px; height: 50px; margin: 2% auto; background: url("http://hackerativismo.github.io/viral-aedes-aegypti/aedes.png")' +
 	'left center; }' +
 	'.flyAE { animation: play .2s steps(6) infinite; }' +
-	'.aegypti { cursor: url("http://hackerativismo.github.io/viral-aedes-aegypti/raquete.png") 30 35, pointer; }' +
+	'.aegypti { cursor: url("http://hackerativismo.github.io/viral-aedes-aegypti/raquete.cur") 30 35, pointer; }' +
 	'@keyframes play { 100% { background-position: -360px; } }' +
 	'.rotateAE { background-position: 180px; }' +
 	'@media (min-width: 940px) { body #aegypti-intervencao #aegypti-close { width: 42px; height: 42px; margin-left: 348px; top: 42px; left: 50%; } }' +
