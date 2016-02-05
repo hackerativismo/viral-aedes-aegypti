@@ -15,12 +15,12 @@ jQuery(document).ready(function($) {
 	'#aegypti-intervencao img { width: 100%; max-width: 939px;' +
 	'</style>');
 
-  minY = 20;
-  maxY = 200;
-  minX = 50
+        minY = 20;
+        maxY = 200;
+        minX = 50;
 	maxX = $(document.body).width() - 100;
 
-	$(document).ready(function() {
+	jQuery(document).ready(function($) {
 	    for (var i=0; i<3; i++) {
 	        setTimeout(function(){
 	            var mosquito = $('<a href="http://combateaedes.saude.gov.br/"' +
@@ -110,4 +110,3 @@ jQuery(document).ready(function($) {
 	}
 
 });
-
