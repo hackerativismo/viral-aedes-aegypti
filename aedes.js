@@ -4,7 +4,7 @@ jq172script.type = 'text/javascript';
 jq172script.onload = function() {
 
   var jq172 = jQuery.noConflict(true);
-  console.log('Existing jQuery version is ' + $.fn.jquery);
+  if (window.$) console.log('Existing jQuery version is ' + $.fn.jquery);
   
   jq172(document).ready(function($) {
 
