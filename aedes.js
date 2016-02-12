@@ -31,12 +31,34 @@ jq172script.onload = function() {
     maxX = $(document.body).width() - 100;
   
     $(document).ready(function($) {
-      for (var i=0; i<3; i++) {
+
+// cookie state
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) return c.substring(name.length,c.length);
+    }
+    return "";
+}
+
+  var getMoskito = getCookie("moskito");
+  var moskito;
+  var d = new Date();
+  d.setTime(d.getTime() + (316*24*60*60*1000));
+  var expires = "expires="+d.toGMTString();
+  if(getMoskito != "null") {
+
+     for (var i=0; i<3; i++) {
         setTimeout(function(){
+
           var mosquito = $('<a href="http://combateaedes.saude.gov.br/"' +
             ' target="_blank" class="aegypti flyAE"' +
             ' id="aegypti'+i+'" style="top:-90px"></a>')
             .appendTo(document.body);
+
           mosquito.css({ left: makeNewPosition().left + 'px' });
           mosquito.click(function(){
   
@@ -57,6 +79,7 @@ jq172script.onload = function() {
             }
   
           mosquito.remove();  // Mata o mosquito, remove da página.
+          document.cookie="moskito=null; "+ expires +"=never; path=/"; // state cookie
           mosquito[0] = null; // facilita o fim da animação.
   
           return false;
@@ -71,6 +94,11 @@ jq172script.onload = function() {
           animateAedes(mosquito);
         }, Math.pow(i*2,2)*1000);
       }
+
+  } // if
+  else {
+      moskito = "null";
+  } // fim
   
     });
   
