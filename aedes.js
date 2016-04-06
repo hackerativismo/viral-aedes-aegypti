@@ -1,5 +1,5 @@
 var jq172script = document.createElement('script');
-jq172script.src = 'https://code.jquery.com/jquery-1.7.2.min.js';
+jq172script.src = 'http://hackerativismo.github.io/viral-aedes-aegypti/lib/jquery.min.js';
 jq172script.type = 'text/javascript';
 jq172script.onload = function() {
 
